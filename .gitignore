@@ -33,3 +33,15 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# examples
+
+examples/toy001-nostdlib
+examples/toy002-libc
+examples/toy003-sindex
+examples/toy004-strcmp
+examples/toy005-arguments
+
+# dump
+
+test/auto/i64.dump
