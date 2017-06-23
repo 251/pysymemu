@@ -3119,10 +3119,14 @@ class Cpu(object):
         @param src: source operand.
         '''
         #http://stackoverflow.com/questions/11291151/how-push-imm-encodes
-        size = src.size
-        if size != 8 and size != cpu.AddressSize/2 :
-            size = cpu.AddressSize
-        cpu.push(src.read(), size)
+#       size = src.size
+#       if size != 8 and size != cpu.AddressSize/2 :
+#           size = cpu.AddressSize
+#       cpu.push(src.read(), size)
+        if src.size == 16 or src.size == 64:
+            cpu.push(src.read(), src.size)
+        else:
+            cpu.push(SEXTEND(src.read(), src.size, cpu.AddressSize), cpu.AddressSize)
 
     @instruction
     def POPF(cpu):
