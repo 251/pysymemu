@@ -6,7 +6,7 @@
  * Compile with :
  *   $ gcc toy004-strcmp.c  -o toy004-strcmp
  *
- * Analize it with:
+ * Analyze it with:
  *   $ python system.py --sym stdin example/toy004-strcmp
 */
 

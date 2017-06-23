@@ -7,7 +7,7 @@
  * Compile with :
  *   $ gcc toy003-sindex.c -o toy003-sindex
  *
- * Analize it with:
+ * Analyze it with:
  *   $ python system.py --sym stdin example/toy003-sindex
 */
 

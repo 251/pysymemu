@@ -951,7 +951,7 @@ class Cpu(object):
 #End calculate flags
 
     def execute(cpu):
-        ''' Decode, and execute one intruction pointed by register PC'''
+        ''' Decode, and execute one instruction pointed by register PC'''
         if not isinstance(cpu.PC, (int,long)):
             raise SymbolicPCException(cpu.PC)
 
