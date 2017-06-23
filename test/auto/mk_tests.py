@@ -1,3 +1,4 @@
+import binascii
 import copy
 import traceback
 import sys
@@ -87,7 +88,7 @@ class Gdb(subprocess.Popen):
             return 'amd64'
         else:
             print infotarget
-            raise NotImplemented
+            raise NotImplementedError
 
 
 gdb = Gdb(sys.argv[1])
@@ -139,7 +140,7 @@ while True:
             break
 
         #print instruction
-        disassembly = "0x%x:\t%s\t%s" %(instruction.address, instruction.mnemonic, instruction.op_str)
+        disassembly = "0x%x:\t%s\t%s\t(%s)" %(instruction.address, instruction.mnemonic, instruction.op_str, binascii.hexlify(instruction.bytes))
         print "#INSTRUCTION:", disassembly
 
         if instruction.insn_name().upper() in ['CPUID', 'RDTSC', 'NOP', 'SYSCALL', 'INT', 'SYSENTER']:
