@@ -48,6 +48,7 @@ class MemoryTest(unittest.TestCase):
 
     def setUp(self):
         self.fds = self.get_open_fds()
+
     def tearDown(self):
         gc.collect()
         gc.garbage = []
@@ -1038,7 +1039,7 @@ class MemoryTest(unittest.TestCase):
         self.assertEqual(mem.getchar(addr), 'a')
 
         mem.mprotect(addr, size, 'w')
-        self.assertRaisesRegexp(MemoryException, "No Access Reading <0x%x>"%addr, mem.getchar, addr)
+        self.assertRaisesRegexp(MemoryException, "No Access Reading <{}>".format(addr), mem.getchar, addr)
 
     def testmprotectFailWriting(self):
         my_solver = Solver()
@@ -1053,7 +1054,7 @@ class MemoryTest(unittest.TestCase):
         mem.putchar(addr, 'a')
 
         mem.mprotect(addr, size, 'r')
-        self.assertRaisesRegexp(MemoryException, "No Access Writting <0x%x>"%addr, mem.putchar, addr, 'a')
+        self.assertRaisesRegexp(MemoryException, "No Access Writting <{}>".format(addr), mem.putchar, addr, 'a')
 
     def testmprotecNoReadthenOkRead(self):
         my_solver = Solver()
@@ -1067,7 +1068,7 @@ class MemoryTest(unittest.TestCase):
         addr = mem.mmap(None, size, 'wx')
         mem.putchar(addr, 'a')
 
-        self.assertRaisesRegexp(MemoryException, "No Access Reading <0x%x>"%addr, mem.getchar, addr)
+        self.assertRaisesRegexp(MemoryException, "No Access Reading <{}>".format(addr), mem.getchar, addr)
 
         mem.mprotect(addr, size, 'r')
         self.assertEqual(mem.getchar(addr), 'a')
