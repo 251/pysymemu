@@ -25,11 +25,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import os
 import unittest
 from linux import *
 from memory import *
 from cpu import *
 
+@unittest.skipUnless(os.path.exists("./binaries"), "binaries folder not found")
 class LinuxTest(unittest.TestCase):
     def setUp(self):
         pass
