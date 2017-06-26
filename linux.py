@@ -196,7 +196,7 @@ class Linux(object):
 
     def exe(self, filename, argv=[], envp=[]):
         '''
-        Loads and an ELF program in memory and prepares the initial CPU state. 
+        Loads an ELF program into memory and prepares the initial CPU state.
         Creates the stack and loads the environment variables and the arguments in it.
         @param filename: pathname of the file to be executed.
         @param argv: list of parameters for the program to execute.
@@ -214,7 +214,7 @@ class Linux(object):
         addressbitsize = {'x86':32, 'x64':64}[elf.get_machine_arch()]
         logger.info("Loading %s as a %s elf"%(filename,arch))
         logger.info("\tArguments: %s"%repr(argv))
-        logger.debug("\tEnvironmen:")
+        logger.debug("\tEnvironment:")
         for e in envp:
             logger.debug("\t\t%s"%repr(e))
 

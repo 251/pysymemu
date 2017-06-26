@@ -249,7 +249,7 @@ if __name__ == '__main__':
                 current_state = executor.getState()
 
             try:
-                #execute until exception or finnish
+                #execute until exception or finish
                 while current_state.execute():
                    count += 1
             except SymbolicLoopException, e:
@@ -258,11 +258,11 @@ if __name__ == '__main__':
                 cmin, cmax = current_state.solver.minmax(counter)
 
                 vals = list(set([cmin, cmax, (cmax-cmin)/2]))
-                print "Symbolic LOOP found, possible detinations are: ", ["%x"%x for x in vals]
+                print "Symbolic LOOP found, possible destinations are: ", ["%x"%x for x in vals]
 
-                #Shuffle the possibilities, 
+                #Shuffle the possibilities,
                 random.shuffle(vals)
-                #we will keep one state for the current analisys and save 
+                #we will keep one state for the current analysis and save
                 #all the rest to files
                 for new_counter in vals[1:]:
                     new_state = current_state.branch()
@@ -285,7 +285,7 @@ if __name__ == '__main__':
                 assert issymbolic(current_state.cpu.PC)
                 #get all possible PC destinations (raise if more tahn 100 options)
                 vals = list(current_state.solver.getallvalues(current_state.cpu.PC, maxcnt = 100))
-                print "Symbolic PC found, possible detinations are: ", ["%x"%x for x in vals]
+                print "Symbolic PC found, possible destinations are: ", ["%x"%x for x in vals]
 
                 #Shuffle the possibilities, 
                 random.shuffle(vals)
@@ -339,7 +339,7 @@ if __name__ == '__main__':
 
             except ProcessExit, e:
                 test_case_no+=1
-                print "Program Finnished correctly"
+                print "Program finished correctly"
                 executor.generate_testcase(current_state)
                 current_state = None
 
@@ -354,7 +354,7 @@ if __name__ == '__main__':
                         solver.push()
                         solver.add(current_state.cpu.PC == 0x41414141)
                         if solver.check() == 'sat':
-                            print "PC seems controled!"
+                            print "PC seems controlled!"
                         solver.pop()
                         m,M = solver.minmax(linux.cpu.PC)
                         print "Program counter range: %016x - %016x" %(m,M)
